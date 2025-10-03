@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #4f46e5;
+  --secondary-color: #f3f4f6;
+  --white: #ffffff;
+  --black: #111827;
+  --grey: #6b7280;
+  --green: #10b981;
+  --red: #ef4444;
+  --transition: all 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.wrapper {
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.quiz-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.quiz-score {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.quiz-question {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-options {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-options li {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  font-weight: 500;
+}
+
+.quiz-options li:hover {
+  background-color: #4338ca;
+}
+
+/* Base style for a selected option before check */
+.quiz-options li.selected {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  border: 2px solid var(--primary-color);
+}
+
+/* --- Answer Highlighting Styles (Added) --- */
+
+/* Correct Answer (always highlighted in green) */
+.quiz-options li.correct-answer {
+  background-color: var(--green) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--green) !important;
+}
+
+/* User's choice was correct (will also have .correct-answer) */
+.quiz-options li.selected.correct {
+  background-color: var(--green) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--green) !important;
+}
+
+/* User's choice was incorrect */
+.quiz-options li.selected.incorrect {
+  background-color: var(--red) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--red) !important;
+}
+
+/* Prevent interaction after checking */
+.quiz-options li.correct-answer,
+.quiz-options li.selected.incorrect,
+.quiz-options li[style*="pointer-events: none"] {
+    pointer-events: none;
+    cursor: default;
+}
+
+/* --- End Answer Highlighting Styles --- */
+
+
+#result {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 1.5rem;
+}
+
+#result.wrong {
+  color: var(--red);
+}
+
+.quiz-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.quiz-foot button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--black);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quiz-foot button:hover {
+  background-color: #e5e7eb;
+}
+
+.quiz-foot button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+#check-answer{
+   color: #4338ca;
+    background-color: white;
+}
+#play-again {
+    background-color: #454546;
+    color: white;
+  display: none;
+}
+
+.setup-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.setup-container input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  width: 60%;
+  max-width: 300px;
+}
+
+.setup-container button {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.setup-container button:hover {
+  background-color: #4338ca;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 1.5rem;
+  }
+
+  .quiz-title {
+    font-size: 1.5rem;
+  }
+
+  .quiz-question {
+    font-size: 1.1rem;
+  }
+
+  .quiz-foot button {
+    font-size: 0.9rem;
+  }
+}
